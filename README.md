@@ -1115,6 +1115,17 @@ Credit: [https://www.linkedin.com/in/isdebuggerpresent](https://www.linkedin.com
 
 ![Recipe 70](screenshots/recipe_70.png)  
 
+## Recipe 71 - Extracting password from Fortinet appliance (CVE-2019–6693)
+
+Long time ago, Fortinet used symetric encryption for protecting password on fortinet configuration export file. In 2019, a reverse engineer found the encryption method. It was AES-CBC with a static key which was `Mary had a littl`. This recipe can be used to extract password and data from this specific encryption :  
+
+Credit: Darcosion
+
+`[{"op":"AES Decrypt","args":[{"option":"UTF8","string":"Mary had a littl"},{"option":"Hex","string":"ba618e25000000000000000000000000"},"CBC","Hex","Raw",{"option":"Hex","string":""},{"option":"Hex","string":""}]},{"op":"Label","args":["000000000000000000000000"]},{"op":"Label","args":["take the 4 first octets, add the \\x00 and put in as IV"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true,false],"disabled":true},{"op":"To Hex","args":["None",0],"disabled":true}]`  
+
+![recipe 71](https://github.com/mattnotmax/cyberchef-recipes/assets/16328515/62bff148-bcb7-48d9-9637-9459f014ddff)
+
+
 # Training
 
 I've developed a course 'CyberChef for Security Analysts' which contains 10 hours of instuctional videos plus labs through Applied Network Defense. To find out more visit [learncyberchef.com](http://learncyberchef.com)

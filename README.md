@@ -189,6 +189,8 @@ Some example CyberChef recipes:
 
 [Recipe 70: Extracting endpoints from Android network security config](#recipe-70---extracting-endpoints-from-android-network-security-config)
 
+[Recipe 71: Extracting password from Fortinet appliance (CVE-2019–6693)](#recipe-71---extracting-password-from-fortinet-appliance-(CVE-2019–6693))
+
 
 ## Recipe 1 - Extract base64, raw inflate and code beautify
 
@@ -1120,6 +1122,8 @@ Credit: [https://www.linkedin.com/in/isdebuggerpresent](https://www.linkedin.com
 Long time ago, Fortinet used symetric encryption for protecting password on fortinet configuration export file. In 2019, a reverse engineer found the encryption method. It was AES-CBC with a static key which was `Mary had a littl`. This recipe can be used to extract password and data from this specific encryption :  
 
 Credit: Darcosion
+Reference : https://www.pirates.re/fortigate-vm-for-vulnerability-discovery
+Rererence : https://medium.com/@bart.dopheide/decrypting-fortigate-passwords-cve-2019-6693-1239f6fd5a61
 
 `[{"op":"AES Decrypt","args":[{"option":"UTF8","string":"Mary had a littl"},{"option":"Hex","string":"ba618e25000000000000000000000000"},"CBC","Hex","Raw",{"option":"Hex","string":""},{"option":"Hex","string":""}]},{"op":"Label","args":["000000000000000000000000"]},{"op":"Label","args":["take the 4 first octets, add the \\x00 and put in as IV"]},{"op":"From Base64","args":["A-Za-z0-9+/=",true,false],"disabled":true},{"op":"To Hex","args":["None",0],"disabled":true}]`  
 
